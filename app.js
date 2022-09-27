@@ -11,9 +11,10 @@ const fetchCountryByName = async (name) => {
 fetchCountryByName();
 
 const updateDOM = (countries) => {
-  console.log(countries);
-  console.log(countries[0].maps.googleMaps);
-  countriesDiv.innerHTML = `<div class="card text-center m-4" style="width: 18rem;">
+  //   console.log(countries);
+  //   console.log(countries[0].maps.googleMaps);
+
+  countriesDiv.innerHTML = `<div class="card text-center m-4 " style="width: 18rem;">
   <img src="${countries[0].flags.svg}" class="card-img-top" alt="...">
   <div class="card-body">
     <h2 class="card-title">${countries[0].name.common}</h2>
