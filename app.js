@@ -13,7 +13,7 @@ fetchCountryByName();
 const updateDOM = (countries) => {
   console.log(countries);
   console.log(countries[0].maps.googleMaps);
-  countriesDiv.innerHTML = `<div class="card text-center" style="width: 18rem;">
+  countriesDiv.innerHTML = `<div class="card text-center m-4" style="width: 18rem;">
   <img src="${countries[0].flags.svg}" class="card-img-top" alt="...">
   <div class="card-body">
     <h2 class="card-title">${countries[0].name.common}</h2>
@@ -25,9 +25,7 @@ const updateDOM = (countries) => {
     <li class="list-group-item">${Object.values(countries[0].languages)}</li>
   </ul>
   <div class="card-body">
-  <a href="${countries[0].maps.googleMaps}" >${
-    countries[0].maps.googleMaps
-  } </a>
+  <a href="${countries[0].maps.googleMaps}" >google maps </a>
   </div>
 </div>`;
 };
