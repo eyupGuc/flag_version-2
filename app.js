@@ -20,10 +20,23 @@ const renderError = () => {
 const renderCountries = (data) => {
   console.log(data);
   const selectDiv = document.querySelector(".selectDiv");
+  console.log(selectDiv);
   data.forEach((country) => {
     selectDiv.innerHTML += `<option value="${country.name.common}">${country.name.common}</option>`;
   });
 };
-selectDiv.addEventListener("change", (e) => {});
+selectDiv.addEventListener("change", (e) => {
+  updateDom(e.target.value, data);
+});
 
 fetchApiCountry();
+const updateDom = (value, data) => {
+  console.log(data[0].name.common);
+
+  let country = data.filter((item) => {
+    if (item.name.common == value) {
+      return item.name.common;
+    }
+  });
+  console.log(country);
+};
