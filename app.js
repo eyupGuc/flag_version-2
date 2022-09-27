@@ -1,34 +1,29 @@
-const fetchCountryByName = async (name) => {
+const fetchApiCountry = () => {
   const url = `https://restcountries.com/v3.1/all`;
-
-  const res = await fetch(url);
-  const data = await res.json();
-  //   console.log(data);
-  //   console.log(data[0].name.common);
-  //   console.log(data[0].fifa);
-  updateDOM(data);
+  fetch(url)
+    .then((res) => {
+      if (!res.ok) {
+        renderError(`Something went wrong: ${res.status}`);
+        throw new Error();
+      } else {
+        return res.json();
+      }
+    })
+    .then((data) => renderCountries(data))
+    .catch((e) => console.log(e));
 };
-fetchCountryByName();
-
-const updateDOM = (countries) => {
-  //   console.log(countries);
-  //   console.log(countries[0].maps.googleMaps);
-
-  countriesDiv.innerHTML = `<div class="card text-center m-4 " style="width: 18rem;">
-  <img src="${countries[0].flags.svg}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h2 class="card-title">${countries[0].name.common}</h2>
-    <h5>${countries[0].capital}</h5>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">${countries[0].population}</li>
-    <li class="list-group-item">${countries[0].borders}</li>
-    <li class="list-group-item">${Object.values(countries[0].languages)}</li>
-  </ul>
-  <div class="card-body">
-  <a href="${countries[0].maps.googleMaps}" >google maps </a>
-  </div>
-</div>`;
+const renderError = () => {
+  const countriesDiv = document.querySelector(".countries");
+  countriesDiv.innerHTML += `<h2>Country not found <img src="./img/404.jpg"/>`;
 };
 
-const countriesDiv = document.querySelector(".countries");
+const renderCountries = (data) => {
+  console.log(data);
+  const selectDiv = document.querySelector(".selectDiv");
+  data.forEach((country) => {
+    selectDiv.innerHTML += `<option value="${country.name.common}">${country.name.common}</option>`;
+  });
+};
+selectDiv.addEventListener("change", (e) => {});
+
+fetchApiCountry();
