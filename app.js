@@ -2,6 +2,7 @@ const fetchCountries = async () => {
   const res = await fetch("https://restcountries.com/v3.1/all");
   const data = await res.json();
   console.log(data);
+  console.log(data[2]);
   box(data);
 };
 
@@ -21,9 +22,10 @@ const updateDOM = (value, data) => {
   let country = data.filter((item) => {
     if (item.name.common == value) {
       console.log(item.name.common);
-      return item.name.common;
+      return item;
     }
   });
+  console.log(country);
   const {
     region,
     capital,
@@ -49,7 +51,12 @@ const updateDOM = (value, data) => {
       <li class="list-group-item"><b>Region: </b>${region}</li>
       <li class="list-group-item"><b>Population: </b>${population}</li>
       <li class="list-group-item"><b>Area: </b>${area} KM<sup>2</sup></li>
-      <li class="list-group-item"><b>Borders: </b> ${borders}</li>
+  
+      ${
+        borders != undefined
+          ? `<li class="list-group-item"><b>Borders: </b>${borders}</li>`
+          : ""
+      }
     </ul>
 
   </div>`;
