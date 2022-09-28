@@ -1,8 +1,8 @@
 const fetchCountries = async () => {
   const res = await fetch("https://restcountries.com/v3.1/all");
   const data = await res.json();
-  console.log(data);
-  console.log(data[2]);
+  // console.log(data);
+  // console.log(data[2]);
   box(data);
 };
 
@@ -53,7 +53,7 @@ const updateDOM = (value, data) => {
       <li class="list-group-item"><b>Area: </b>${area} KM<sup>2</sup></li>
   
       ${
-        borders != undefined
+        borders
           ? `<li class="list-group-item"><b>Borders: </b>${borders}</li>`
           : ""
       }
